@@ -22,3 +22,26 @@ class HistorialNavegacion:
         # Retorna la nueva página actual
         print(f"Retrocediendo a: {self.historialAtras[-1]}")
         return self.historialAtras[-1]
+    
+    def avanzar(self):
+        """Avanza a la siguiente página."""
+        if not self.historialAdelante:
+            print("No hay páginas siguientes")
+            return None
+        
+        # Obtiene la siguiente página y la mueve al historial hacia atrás
+        siguientePagina = self.historialAdelante.pop()
+        self.historialAtras.append(siguientePagina)
+        print(f"Avanzando a: {siguientePagina}")
+        return siguientePagina
+    
+    def mostrarHistorial(self):
+        """Muestra el historial completo."""
+        print("\n=== Historial de Navegación ===")
+        if not self.historialAtras:
+            print("El historial está vacío")
+            return
+        
+        print("\nPáginas anteriores:")
+        for i, url in enumerate(reversed(self.historialAtras)):
+            print(f"{i + 1}. {url}")
